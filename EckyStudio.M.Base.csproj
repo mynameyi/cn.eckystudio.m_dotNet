@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{730293F1-BC26-4A5A-92EB-2F932B504F79}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EckyStudio.M.BaseModel</RootNamespace>
+    <AssemblyName>bm</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\dll\</OutputPath>
+    <DefineConstants>TRACE;EckyStudio_M_Base</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>..\dll\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\dependency\Newtonsoft.Json.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="afm\TaskContext.cs" />
+    <Compile Include="afm\OnExceptionHandleMethods.cs" />
+    <Compile Include="afm\RetryCounter.cs" />
+    <Compile Include="afm\ScheduleTask.cs" />
+    <Compile Include="afm\Task.cs" />
+    <Compile Include="afm\TaskExecutor.cs" />
+    <Compile Include="db\ExcelModel.cs" />
+    <Compile Include="db\NPOIExcelHelper.cs" />
+    <Compile Include="Initializer.cs" />
+    <Compile Include="ProgressBox.cs" />
+    <Compile Include="security\CertificateUtils.cs" />
+    <Compile Include="common\DefaultTracer.cs" />
+    <Compile Include="common\ITracerEx.cs" />
+    <Compile Include="common\IUIInteractive.cs" />
+    <Compile Include="db\DbAdapterWrapper.cs" />
+    <Compile Include="db\DbHandler.cs" />
+    <Compile Include="db\DbModel.cs" />
+    <Compile Include="db\ExcelHelper.cs" />
+    <Compile Include="db\IFillTemplate.cs" />
+    <Compile Include="db\MySqlOperator.cs" />
+    <Compile Include="db\OleDbOperator.cs" />
+    <Compile Include="db\OracleDbOperator.cs" />
+    <Compile Include="dmm\ConfigItem.cs" />
+    <Compile Include="dmm\ConfigManagementModel.cs" />
+    <Compile Include="dmm\DataItemAttribute.cs" />
+    <Compile Include="dmm\MultiLanguageManagementModel.cs" />
+    <Compile Include="dmm\web\EntityCommonModel.cs" />
+    <Compile Include="dmm\web\JsonEntityResponseModel.cs" />
+    <Compile Include="dmm\web\JsonEntityRequestModel.cs" />
+    <Compile Include="dmm\web\JsonEntityCommonModel.cs" />
+    <Compile Include="el\Config3_0.cs" />
+    <Compile Include="FileOperator.cs" />
+    <Compile Include="Gzip.cs" />
+    <Compile Include="Json.cs" />
+    <Compile Include="EmailHelper.cs" />
+    <Compile Include="HttpClient.cs" />
+    <Compile Include="fcm\FCM.cs" />
+    <Compile Include="common\ITracer.cs" />
+    <Compile Include="log\CtrlLogTarget.cs" />
+    <Compile Include="log\DefaultLogTarget.cs" />
+    <Compile Include="log\email\EmailHelper.cs" />
+    <Compile Include="log\email\ExceptionReporter.cs" />
+    <Compile Include="log\email\TaskInfo.cs" />
+    <Compile Include="log\email\WindowsUtils.cs" />
+    <Compile Include="log\LogTargetModel.cs" />
+    <Compile Include="log\ILogTarget.cs" />
+    <Compile Include="log\file\FileOperator.cs" />
+    <Compile Include="log\file\FileSeperator.cs" />
+    <Compile Include="log\LogSystemInstance.cs" />
+    <Compile Include="log\LogSystem.cs" />
+    <Compile Include="log\LogTail.cs" />
+    <Compile Include="log\RichTextBoxLogTarget.cs" />
+    <Compile Include="log\file\TextLogTarget.cs" />
+    <Compile Include="log\email\BlockingQueue.cs" />
+    <Compile Include="Pop3.cs" />
+    <Compile Include="Pop3Exception.cs" />
+    <Compile Include="win\ProcessUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegExprUtils.cs" />
+    <Compile Include="security\RSAUtils.cs" />
+    <Compile Include="win\SizeUtils.cs" />
+    <Compile Include="StringUtils.cs" />
+    <Compile Include="ThreadUtils.cs" />
+    <Compile Include="WebPageHelper.cs" />
+    <Compile Include="dmm\web\XMLEntityCommonModel.cs" />
+    <Compile Include="dmm\web\XMLEntityRequestModel.cs" />
+    <Compile Include="dmm\web\XMLEntityResponseModel.cs" />
+    <Compile Include="win\SetupapiWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EckyLanguage2.0\EckyStudio.M.EckyLanguage.csproj">
+      <Project>{5CE9A384-0404-4F2E-9BD9-E7D94BFFC6F4}</Project>
+      <Name>EckyStudio.M.EckyLanguage</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dmm\web\Entity模型设计.txt" />
+    <Content Include="doc\C#中使用消息钩子的方法.txt" />
+    <Content Include="doc\cSharp 3.0 get set 默认值 .txt" />
+    <Content Include="doc\Csharp默认参数与重载.txt" />
+    <Content Include="doc\log系统相关\debug版本与release版本的调用堆栈的一些区别.txt" />
+    <Content Include="doc\log系统相关\异常日志样本.txt" />
+    <Content Include="doc\log系统相关\网络状态检测.txt" />
+    <Content Include="doc\SSL双向认证通信注意事项.txt" />
+    <Content Include="doc\模块化设计的原则.txt" />
+    <Content Include="doc\事件和代理的区别.txt" />
+    <Content Include="doc\判断当前程序集是debug版本还是release版本.txt" />
+    <Content Include="doc\功能模块分类方法.txt" />
+    <Content Include="doc\如何理解CSharp的特性.txt" />
+    <Content Include="doc\泛型类的实例化.txt" />
+    <Content Include="doc\项目基本内容.txt" />
+    <Content Include="doc\log系统相关\日志级别的思考.txt" />
+    <Content Include="doc\泛型类的继承.txt" />
+    <Content Include="doc\流程代码的可读性.txt" />
+    <Content Include="doc\邮件指令伺服系统构想.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="log\independent_ref\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,7 @@
+﻿基础类型
+EntityCommonModel
+---EntityRequestModel
+   集成toJSON、toXML(有标记头,使用默认参数，默认值为xml)、toDeepLink三种数据格式类型、加入GetResponse支持、增加URL、KeyStr属性
+---EntityResponseModel
+   集成fromJSON,fromXML(有标记头,使用默认参数，默认值为xml)，fromDeepLink 三种格式数据的转换
+	
