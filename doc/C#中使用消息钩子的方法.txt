@@ -1,0 +1,43 @@
+1、声明一个钩子函数代理：  
+  public   delegate   IntPtr   HookProc(int   nCode,   IntPtr   wParam,   IntPtr   lParam);  
+   
+  2、声明API函数：  
+  [DllImport("user32.dll",   CharSet=CharSet.Auto)]  
+  public   static   extern   IntPtr   SetWindowsHookEx(int   hookid,   HookProc   pfnhook,   IntPtr   hinst,   int   threadid);  
+   
+  [DllImport("user32.dll",   CharSet=CharSet.Auto,   ExactSpelling=true)]  
+  public   static   extern   bool   UnhookWindowsHookEx(IntPtr   hhook);  
+   
+  [DllImport("user32.dll",   CharSet=CharSet.Auto,   ExactSpelling=true)]  
+  public   static   extern   IntPtr   CallNextHookEx(IntPtr   hhook,   int   code,   IntPtr   wparam,   IntPtr   lparam);  
+   
+  [DllImport("kernel32.dll",   ExactSpelling=true,   CharSet=CharSet.Auto)]  
+  public   static   extern   int   GetCurrentThreadId();  
+   
+  public   const   int   WH_MSGFILTER   =   -1;  
+   
+   
+  3、写你自己的HookProc代理实现方法，如MyHookProc  
+  public   IntPtr   MyHookProc(int   nCode,   IntPtr   wParam,   IntPtr   lParam)  
+  {  
+  //...你的代码  
+  return   CallNextHookEx(iHookHandle,   code,   wparam,   lparam);  
+  }  
+   
+  4、为你的类声明一个Hook   Handle和非托管的钩子线程地址：  
+  private   IntPtr   _iHookHandle=IntPtr.Zero;  
+  private   GCHandle   _hookProcHandle;  
+   
+  5、在合适的地方安装你的钩子  
+  HookProc   hookProc   =   new   HookProc(MyHookProc);  
+  _hookProcHandle   =   GCHandle.Alloc(hookProc);  
+  iHookHandle   =   SetWindowsHookEx(WH_MSGFILTER,   hookProc,   IntPtr.Zero,   .GetCurrentThreadId());  
+  if   (iHookHandle   ==   IntPtr.Zero)   throw   new   System.Exception("没有足够权限安装钩子！");  
+   
+  6、在合适的地方卸载你的钩子  
+  if   (iHookHandle!=IntPtr.Zero)  
+  UnhookWindowsHookEx(iHookHandle);  
+  _hookProcHandle.Free();  
+  iHookHandle   =   IntPtr.Zero;
+
+原文：http://zzgfly.icode.csdn.net/post/2007/05/31/53918 

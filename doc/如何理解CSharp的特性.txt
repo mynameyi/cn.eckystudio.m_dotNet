@@ -1,0 +1,22 @@
+﻿
+C#的特性与Java注解与C语言的预编译，有异曲同工之妙，目的是告诉编译器针对特定对象预先做某些处理。从时间上看，C语言
+的C语言预编译是这种思想的雏形，先有预编译，再到C#特性，然后才有Java注解。当然与C语言预编译相比，C#特定功能
+强大很多，它允许开发者自己定义预处理的逻辑（或者说行为），有机地将预处理与普通编码结合在了一起。当然了，
+用户自定义的特性仅仅是元数据，并不能控制.Net框架的行为，但是可以控制自身的行为，总的来讲，自定义的特性，仅仅运行执行某些运算，保存
+仅仅用于根据实际需要来控制自身的行为，而系统的预定义特性，则可以.Net框架的行为，如：Conditional。 编译器的行为，如，编码提示 ，如Obsolete
+
+自身程序，外部工具：包括编译器，C#执行框架
+.//调用  GetAttribute会导致特性被实例化           
+    Attribute.GetCustomAttribute
+
+FieldInfo i = this.GetType().GetField("mHttpClient");
+//Attribute.GetCustomAttribute(i,typeof(DataItemAttribute)); //该方法会导致特性被实例化
+var aatrs = i.CustomAttributes;
+
+var v = i.CustomAttributes; //该方法仅仅查询成员是否包含属性，特性类不会被初始化.4.5以上支持
+
+判断是否存在特性的几种方式：
+（1）Attribute.GetCustomAttribute/Attribute.GetCustomAttributes //会实例化特性
+ (2) MemberInfo.GetCustomAttributes //会实例化特性
+ (3) MemberInfo.CustomAttributes //需要4.5以上 //不会实例化，4.0可用
+ (4) Attribute.IsDefined(a, typeof(DataItemAttribute))) //不会实例化，4.0可用

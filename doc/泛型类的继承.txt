@@ -1,0 +1,50 @@
+﻿C# 泛型类的继承 
+标签： c# 泛型 .net继承 
+2015-02-27 15:38 4619人阅读 评论(0) 收藏 举报 
+ 分类： 
+C#泛型（2）  
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace 泛型._02泛型类的继承
+{
+    public class Person<T, V>
+        where T : class
+        where V : struct
+    {
+    }
+
+
+    /// <summary>
+    /// 子类继承泛型类时必须明确指定泛型参数的类型
+    /// </summary>
+    public class SubClass : Person<string, int>
+    {
+
+
+    }
+
+
+    /// <summary>
+    /// 子类继承泛型类时必须明确指定泛型参数的类型
+    /// 当子类也是泛型参数是，要注意约束必须和父类的匹配
+    /// </summary>
+    public class SubClass1<X, Y> : Person<X, Y>
+        where X : class
+        where Y : struct
+    {
+
+
+    }
+
+
+    public class SubClass2<X, Y> : Person<string, int>
+    {
+
+
+    }
+} 

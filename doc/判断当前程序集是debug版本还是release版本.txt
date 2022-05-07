@@ -1,0 +1,27 @@
+﻿
+public static bool IsInDebugMode(string FileName)
+{
+    var assembly = System.Reflection.Assembly.LoadFile(FileName);
+    var attributes = assembly.GetCustomAttributes(typeof(System.Diagnostics.DebuggableAttribute), false);
+    if (attributes.Length > 0)
+    {
+    var debuggable = attributes[0] as System.Diagnostics.DebuggableAttribute;
+    if (debuggable != null)
+        return (debuggable.DebuggingFlags & System.Diagnostics.DebuggableAttribute.DebuggingModes.Default) == System.Diagnostics.DebuggableAttribute.DebuggingModes.Default;
+    else
+        return false;
+    }
+    else
+    return false;
+}
+2. [代码]编译时的方法     
+public virtual bool IsDebug
+{
+    get {
+    #if (DEBUG)
+        return true;
+    #else
+        return false;
+    #endif
+    }
+}

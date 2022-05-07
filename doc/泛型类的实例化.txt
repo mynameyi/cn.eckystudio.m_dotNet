@@ -1,0 +1,43 @@
+﻿对C#泛型实例化对像 
+
+最近在编写一套开发框架结构主要应用.Net 3.5以上的框架开发与应用。在此框架中应用了较多的泛型。下面来讲讲对泛型的实例化，以代码为例，如：
+public class A
+{
+　　
+}
+public class B<T>
+{
+　　public static T Get()
+     {
+         //在这一块如何实例化T这个对象呢？如果用default(T)这个是不行的。只能做一个null值处理。
+      }
+}
+以上的方法就是遇到最麻烦的问题。一直以来都以为default(T)就可以实例化T这个对像，其实不然，这个只能起一个null值的作用。如果要解决以上的问题现在有两种方法：
+一、在使用泛型的类后面加入一个 where T : new()，代码如下：
+public class A
+{
+　　
+}
+public class B<T> where T : new()
+{
+　　public static T Get()
+     {
+         T result = new T();//这样就可以实例化。也可以编译通过。
+         ...........
+      }
+}
+对于new()约束，大家可能有一个误解，以为使用了new约束之后，在创建对象时与非泛型的版本是一致的。事实上，使用new关键字的作用只是让编译器在泛型实例化之处，检查所绑定的泛型参数是否具有无参构造函数，也可以实例化出来一个对象。
+二、可以使用System.Activator.CreateInstance<T>()创建泛型实例对像。代码如下：
+public class A
+{
+　　
+}
+public class B<T>
+{
+　　public static T Get()
+     {
+        T s = System.Activator.CreateInstance<T>();
+         .....
+      }
+}
+上面所讲的两种方式都是以用反射机制来获取泛型对象的实例的。 

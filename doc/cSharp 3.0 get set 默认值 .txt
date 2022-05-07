@@ -1,0 +1,56 @@
+﻿c# 3.0 get set 默认值 
+2013-10-30 09:12 14042人阅读 评论(1) 收藏 举报 
+ 分类： 
+c#（16）  
+之前曾经介绍过 C# 3.0 { get; set; } 默认值，本文是在其基础上完成的，增加了些内容。
+.NET Framework 3.5 使用的是 C# 3.0，C# 3.0 有一些新的语言特性，其中有一项就是快捷属性。
+之前的写法：
+private int _id = 0; 
+public int Id 
+{ 
+get 
+{ 
+return _id; 
+} 
+set 
+{ 
+_id = value; 
+} 
+}
+在 C# 3.0 中可以简写为这样：
+
+public int Id { get; set; }
+
+C# 3.0 { get; set; } 默认值
+这就不得不说 { get; set; } 的默认值了，因为不存在了私有自段，我们无法人工指定默认值了，那么系统的默认值是什么呢？
+对于 int 类型，默认值是 0；
+对于 int? 类型，默认值是 null；
+对于 bool 类型，默认值是 false；
+对于 bool? 类型，默认值是 null；
+对于 string 类型，默认值是 null；
+对于 string? 类型，哈哈，没有这种写法，会出错；
+对于 DateTime 类型，默认值是 0001-01-01 00:00:00；
+对于 DateTime? 类型，默认值是 null；
+对于 enum 类型，默认值是值为 0 的项，如果不存在 0 的 enum 项，它仍然是 0，相关内容可参见：C# 枚举（enum）；
+对于 enum? 类型，默认值是 null；
+对于 class 类型，默认值是未实例化的对象引用；
+对于 class? 类型，哈哈，没有这种写法，会出错。
+关于类型加 ?，表示这种类型的值可为 null，比如 int 本来没有 null 值，加上 int? 就可以为 null 了。
+
+[csharp] view plain copy
+
+ 
+public string test {  
+     get  
+     {  
+         if (test == null)  
+         {  
+             return "默认值";  
+         }  
+         else  
+         {  
+             return test;  
+         }  
+     }  
+     set { test = value; }  
+ }

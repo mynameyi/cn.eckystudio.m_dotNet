@@ -1,0 +1,8 @@
+﻿EckyStudio:致力于打造具有艺术鉴赏性的代码工程
+
+1.log:日志系统
+2.afm:自动化流程模型 （Automization Flow Model)
+3.fcm:功能组件模型 (Functional Component Model)
+4.dmm:数据管理模型（Data Management Model）
+	（1）目前主要针对常见的  一对一/键值对 的数据管理（元素管理、一对一数据管理(one-to-one)、键值对管理(Key)、数据项管理（DataItem）），
+	如：配置管理、多语言管理等建立模型,以及XML实体数据模型，方便使用

@@ -1,0 +1,16 @@
+﻿C# 基础连接已经关闭: 发送时发生错误。  
+
+在程序中获取某个https网址的源码，GetRespose()时
+出现了“基础连接已经关闭: 发送时发生错误。”的错误提示。
+翻了论坛后，有个仁兄说：
+                //.net 4.0 设置： ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+                //.net 4.5 设置： ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls1.2;
+我看了眼自己写的程序，是.net4.0的
+于是写了上边这句，就好了。
+原因虽然没搞清楚。但体会很深。懂行的就是一句话。不懂行的折腾几天，胡咧咧，没用。
+这句话，值多少钱？
+
+除此之外，上午碰见了关于安全性提示的问题，相关的话分别是
+//ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(CheckValidationResult);
+//ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+谁知道有没有用呢，记下来，有用没用以后再说。
